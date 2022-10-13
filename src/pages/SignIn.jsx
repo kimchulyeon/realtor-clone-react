@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai';
 
 const SignIn = () => {
   // * 객체로 상태 관리
@@ -6,6 +7,9 @@ const SignIn = () => {
     email: '',
     password: '',
   });
+
+  const [showPw, setShowPw] = useState(false);
+
   // * 구조분해할당
   const {email, password} = formData;
 
@@ -31,6 +35,7 @@ const SignIn = () => {
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
           <form>
+            {/* ID */}
             <input
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="email"
@@ -39,7 +44,19 @@ const SignIn = () => {
               onChange={handleForm}
               placeholder="Email address"
             />
-            <input className="w-full" type="password" id="password" value={password} onChange={handleForm} />
+
+            {/* PW */}
+            <div className='relative'>
+              <input
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+                type={showPw ? 'text' : 'password'}
+                id="password"
+                value={password}
+                onChange={handleForm}
+                placeholder="Password"
+              />
+              {showPw ? <AiFillEyeInvisible /> : <AiFillEye />}
+            </div>
           </form>
         </div>
       </div>
